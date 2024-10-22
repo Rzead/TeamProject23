@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Register Page </title>
+</head>
+
+<body>
+    <h1>Register</h1>
+    <form id="registerForm">
+        <label for="email">Professional Email:</label>
+        <input type="text" id="email" name="email" required><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br>
+
+        <label for="passwordConfirmation">Password Confirmation:</label>
+        <input type="password" id="passwordConfirmation" name="passwordConfirmation" required><br>
+
+        <button type="submit">register</button>
+    </form>
+
+    <div id="sucess"></div>
+
+    <script>
+        const form = document.getElementById('registerForm');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const passwordConfirmation = document.getElementById('passwordConfirmation').value;
+
+            const emailRegex = /^[a-zA-Z0-9._%+-]+\.{1}[a-zA-Z0-9._%+-]+@make-it-all\.co\.uk$/;
+
+            if (!email || !password || !passwordConfirmation) {
+                alert('All fields are required.');
+                return;
+            }
+
+            if (!emailRegex.test(email)) {
+                alert('Invalid email format. It should be firstname.lastname@make-it-all.co.uk');
+                return;
+            }
+
+            if (password === passwordConfirmation && emailRegex.test(email)) { 
+                document.getElementById('sucess').innerHTML = "<br> Congratulation, your account has been sucessfully created !";
+            } else {
+                document.getElementById('sucess').innerHTML = "<br> Failure in the creation of your account, please retry";
+            }
+
+        });
+    </script>
+</body>
+
+
+</html>
