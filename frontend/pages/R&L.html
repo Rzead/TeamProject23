@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Register&Login Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      user-select: none;
+    }
+
+    body {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      font-size: 10px;
+      background-color: blanchedalmond;
+      color: grey;
+      align-items: center;
+    }
+
+    .shell {
+      position: relative;
+      width: 1000px;
+      min-width: 1000px;
+      height: 500px;
+      min-height: 500px;
+      padding: 30px;
+      background-color: rgb(232, 232, 231);
+      box-shadow: 10px 10px 10px;
+      border-radius: 8px;
+
+    }
+
+    @media (max-width: 1000px) {
+      .shell {
+        transform: scale(0.6);
+      }
+    }
+
+    @media (max-width: 800px) {
+      .shell {
+        transform: scale(0.5);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .shell {
+        transform: scale(0.4);
+      }
+    }
+
+    .container_register_and_login {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 0;
+      width: 600px;
+      height: 100%;
+      padding: 20px;
+      background-color: rgb(240, 239, 238);
+      transition: 1.5s;
+
+    }
+
+    .form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+    }
+
+    .icon_container {
+      margin: 0 5px;
+      padding: 10px;
+      transition: 0.1s;
+    }
+
+    .icon {
+      width: 200px;
+      height: auto;
+    }
+
+
+    .form_input {
+      width: 300px;
+      height: 50px;
+      margin: 5px 0px;
+      font-size: 10px;
+      padding-left: 20px;
+      border: none;
+      outline: none;
+      background-color: white;
+      transition: 0.5s ease;
+      border-radius: 8px;
+      box-shadow: inset 2px 2px 4px grey, 6px 6px 10px rgb(198, 196, 196)
+    }
+
+    .form_span {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    .title {
+      color: black;
+      font-size: 30px;
+      letter-spacing: 5px;
+      padding-bottom: 10px;
+
+    }
+
+
+    .button {
+      margin-top: 10px;
+      width: 160px;
+      height: 50px;
+      border-radius: 25px;
+      background-color: rgb(0, 140, 255);
+      color: aliceblue;
+      border: none;
+      box-shadow: 6px 6px 10px rgb(198, 196, 196);
+    }
+
+    .container_a {
+      z-index: 100;
+      left: calc(100% - 600px);
+    }
+
+    .container_b {
+      z-index: 0;
+      left: calc(100% - 600px);
+    }
+
+    .switch_login_and_register {
+      display: flex;
+      justify-content: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 400px;
+      padding: 50px;
+      z-index: 200;
+      transition: 1.5s;
+      background-color: rgb(240, 239, 238);
+      overflow: hidden;
+      box-shadow: 4px 4px 10px;
+    }
+
+    .switch_container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      position: absolute;
+      width: 400px;
+      padding: 50px 50px;
+      transition: 1.5s;
+    }
+
+    .switch_text {
+      margin-top: 20px;
+    }
+
+    .is-objr {
+      left: calc(100% - 400px);
+      transition: 1.5s;
+      transform-origin: left;
+    }
+
+
+    .is-objl {
+      left: 0;
+      transition: 1.5s;
+      transform-origin: right;
+    }
+
+    .is-objz {
+      z-index: 200;
+      transition: 1.5s;
+    }
+
+
+    .is-hidden {
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      transition: 1.5s;
+    }
+
+    .is-gx {
+      animation: is-gx 1.5s;
+    }
+
+    @keyframes is-gx {
+
+      0%,
+      10%,
+      100% {
+        width: 400px;
+      }
+
+      30%,
+      50% {
+        width: 500px;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="shell">
+
+    <div class="container_register_and_login container_a" id="register">
+      <form action="" method="" class="form" id="register_form">
+        <div class="icon_container">
+          <img src="companyIcon.png" alt="Company Icon" class="icon">
+        </div>
+        <h2 class="register_and_login_from_title title">Register</h2>
+        <span class="form_span">Welcome to join our company, now please type your</span>
+        <input type="text" class="form_input" placeholder="Name">
+        <!--We need js to verify here if it is a legal email in the formal version-->
+        <input type="text" class="form_input" placeholder="Email" id="register_Email">
+        <input type="text" class="form_input" placeholder="Password">
+        <button class="form_submit_button button">Register</button>
+      </form>
+    </div>
+
+    <div class="container_register_and_login container_b" id="login">
+      <form action="" method="post" class="form" id="login_form">
+        <div class="icon_container">
+          <img src="companyIcon.png" alt="Company Icon" class="icon">
+        </div>
+        <h2 class="register_and_login_from_title title">Login</h2>
+        <span class="form_span">Welcome back!</span>
+        <input type="text" class="form_input" placeholder="Email" id="login_Email" required>
+        <input type="password" class="form_input" placeholder="Password" id="login_Password" required>
+        <button type="submit" class="form_submit_button button">Login</button>
+        <!-- Password reset link -->
+        <a href="#" class="forget_password_link">Forgot your password?</a>
+      </form>
+    </div>
+
+    <!--Script for the login process-->
+    <script>
+      const form = document.getElementById('login_form');
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const email = document.getElementById('login_Email').value;
+        const password = document.getElementById('login_Password').value;
+
+        // Debug logs
+        console.log("Entered email:", email);
+        console.log("Entered password:", password);
+
+        // Regular expression correction
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+        if (!email || !password) {
+          alert('Both fields are required.');
+          console.log("One of the fields is empty.");
+          return;
+        }
+
+        // Specific validation for make-it-all company email format
+        if (!emailRegex.test(email) || !email.endsWith('@make-it-all.co.uk')) {
+          alert('Invalid email format. It should be firstname.lastname@make-it-all.co.uk');
+          console.log("Invalid email format.");
+          return;
+        }
+
+        // Password validation
+        if (password === 'admin') {
+          console.log("Correct password. Redirecting...");
+          window.location.href = 'main.html';
+        } else {
+          alert('Incorrect password. You should use "admin". 😉');
+          console.log("Incorrect password.");
+        }
+
+      });
+    </script>
+
+
+    <div class="switch_login_and_register" id="switch_obj">
+      <div class="switch_container" id="switch_a">
+        <h2 class="switch_title title">Welcome back</h2>
+        <h2 class="switch_title title">Our employee!</h2>
+        <p class="switch_text">let's login and start working!</p>
+        <button class="switch_section_button button">Login</button>
+      </div>
+
+
+      <div class="switch_container is-hidden" id="switch_b">
+        <h2 class="switch_title title">Hello </h2>
+        <h2 class="switch_title title"> new employee!</h2>
+        <p class="switch_text">Go to register and join us!</p>
+        <button class="switch_section_button button">Register</button>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+
+
+
+<script>
+
+
+  // Varibles
+  let switch_SLAR = document.querySelector("#switch_obj");
+  let switch_a = document.querySelector("#switch_a");
+  let switch_b = document.querySelector("#switch_b");
+  let switch_btns = document.querySelectorAll(".switch_section_button");
+  let a_con = document.querySelector("#register");
+  let b_con = document.querySelector("#login");
+  let submit_buttons = document.querySelectorAll(".form_submit_button");
+
+
+  let getButtons = (e) => e.preventDefault();
+
+
+  let changeForm = (e) => {
+
+    switch_SLAR.classList.add("is-gx");
+    setTimeout(function () {
+      switch_SLAR.classList.remove("is-gx");
+    }, 1500);
+
+    switch_SLAR.classList.toggle("is-objr")
+    switch_a.classList.toggle("is-hidden");
+    switch_b.classList.toggle("is-hidden");
+
+    a_con.classList.toggle("is-objl");
+    b_con.classList.toggle("is-objl");
+    b_con.classList.toggle("is-objz");
+  };
+
+
+  let shell = (e) => {
+    for (let i = 0; i < submit_buttons.length; i++)
+      //submit_buttons[i].addEventListener("click", getButtons); // Pierre: Don't understant the purpose of this line 
+      for (let i = 0; i < switch_btns.length; i++)
+        switch_btns[i].addEventListener("click", changeForm);
+  };
+
+
+  window.addEventListener("load", shell);
+
+
+</script>
+
+
+</html>
