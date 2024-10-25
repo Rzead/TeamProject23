@@ -4,6 +4,8 @@
     flex-direction: column;
     gap: 20px;
     padding: 20px;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 /* Styles for each project */
@@ -17,12 +19,16 @@
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+.project-item:hover {
+    background-color: #e0e0e0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 
 /* Section with the project image or initials */
 .project-item-picture {
     width: 50px;
     height: 50px;
-    background-color: #e0e0e0;
+    background-color: #a3d5ff;
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -64,4 +70,21 @@
         flex-direction: column;
         align-items: flex-start;
     }
+}
+
+/* button */
+#new-project-button {
+    background-color: #3498db; /* Blue color */
+    color: white; /* White text */
+    padding: 10px 20px; /* Padding for a better button size */
+    border: none; /* Remove default borders */
+    border-radius: 8px; /* Rounded corners */
+    font-size: 16px; /* Adjust the font size */
+    cursor: pointer; /* Change cursor on hover */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+#new-project-button:hover {
+    background-color: #2980b9; /* Darker blue on hover */
 }
