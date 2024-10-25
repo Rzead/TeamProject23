@@ -33,9 +33,3 @@ body {
 #navbar-container {
     background-color: blanchedalmond; /* Couleur de la navbar */
 }
-
-/* Main content styles */
-#content {
-    background-color: aqua; /* Couleur de fond de la section de contenu */
-    box-sizing: border-box;
-}
