@@ -79,7 +79,7 @@
 }
 
 .kanban-item:hover {
-  cursor: move;
+  cursor: grab;
 }
 
 .kanban-item:last-child {
@@ -126,7 +126,7 @@
 }
 
 .drag_handler:hover {
-  cursor: move;
+  cursor: grab;
 }
 
 .drag_handler_icon {
