@@ -25,17 +25,16 @@ body {
 /* Grid container for the page */
 .page-container {
     display: grid;
-    grid-template-columns: 18vw 1fr; /* Navbar takes auto width, content takes remaining space */
+    grid-template-columns: 18vw 1fr;
     min-height: 100vh;
 }
 
 /* Navbar styles */
 #navbar-container {
-    background-color: blanchedalmond; /* Couleur de la navbar */
+    background-color: blanchedalmond;
 }
 
 /* Main content styles */
 #content {
-    background-color: aqua; /* Couleur de fond de la section de contenu */
     box-sizing: border-box;
 }
