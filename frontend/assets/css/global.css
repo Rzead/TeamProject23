@@ -1,0 +1,41 @@
+/* global.css */
+:root {
+  --color-primary: #3498db;
+  --color-secondary: #2ecc71;
+  --color-accent: #e74c3c;
+  --color-background: #f5f5f5;
+  --color-dark: #2c3e50;
+  --color-light: #ffffff;
+
+  --font-primary: 'Roboto', sans-serif;
+  --font-size-base: 16px;
+}
+
+/* Base styles for body */
+body {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-base);
+  color: var(--color-dark);
+  background-color: var(--color-background);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+/* Grid container for the page */
+.page-container {
+    display: grid;
+    grid-template-columns: 18vw 1fr; /* Navbar takes auto width, content takes remaining space */
+    min-height: 100vh;
+}
+
+/* Navbar styles */
+#navbar-container {
+    background-color: blanchedalmond; /* Couleur de la navbar */
+}
+
+/* Main content styles */
+#content {
+    background-color: aqua; /* Couleur de fond de la section de contenu */
+    box-sizing: border-box;
+}

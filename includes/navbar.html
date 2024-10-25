@@ -12,27 +12,12 @@
 
 <style>
     .navbar {
-        width: 200px;
-        background-color: blanchedalmond;
-        height: 100%;
-        position: fixed;
-        top: 0;
-        left: 0;
+        height: 100vh;
+        position: sticky;
         display: flex;
         flex-direction: column;
         justify-content: center;
         transition: width 0.3s ease;
-    }
-    
-    @media (max-width: 600px) {
-        .navbar {
-            width: 100px;
-        }
-    
-        .navbar nav li a {
-            font-size: 14px;
-            padding: 16px 8px;
-        }
     }
     
     .navbar nav ul {
@@ -50,7 +35,6 @@
         text-decoration: none;
         display: block;
         padding: 20px;
-        font-size: 18px;
         width: 100%;
         box-sizing: border-box;
         text-align: center;
@@ -72,14 +56,4 @@
         transform: translateY(-3px);
     }
     
-    @media (max-width: 400px) {
-        .navbar {
-            width: 80px;
-        }
-    
-        .navbar nav li a {
-            font-size: 14px;
-            padding: 12px;
-        }
-    }
 </style>
