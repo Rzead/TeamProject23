@@ -17,7 +17,9 @@
                 <div id="project-header-title">
                     <h1 style="margin: 0;">Projects</h1>
                 </div>
-                <div id="project-header-button"><button id="new-project-button">New Project</button></div>
+                <div id="project-header-button">
+                    <button id="new-project-button">New Project</button>
+                </div>
             </div>
             <div id="project-content" style="display: flex; flex-direction: column;">
                 <div id="project-content-searchBar"></div>
@@ -55,5 +57,32 @@
     </div>
 
     <script src="../../includes/navbar.js"></script>
+    <script>
+        function addRandomProject() {
+            const randomProjectNumber = Math.floor(Math.random() * 100) + 1;
+            const projectTitle = `Project ${randomProjectNumber}`;
+            const updatedDaysAgo = Math.floor(Math.random() * 10) + 1;
+
+            const newProjectItem = document.createElement('div');
+            newProjectItem.classList.add('project-item');
+
+            newProjectItem.innerHTML = `
+                <div class="project-item-picture">
+                    <span class="project-initial">P</span>
+                </div>
+                <div class="project-item-details">
+                    <h4>${randomProjectNumber} / ${projectTitle}</h4>
+                    <span class="status">Owner</span>
+                </div>
+                <div class="project-item-meta">
+                    <span class="updated-date">Updated ${updatedDaysAgo} days ago</span>
+                </div>
+            `;
+
+            document.getElementById('project-content-listProjects').appendChild(newProjectItem);
+        }
+        document.getElementById('new-project-button').addEventListener('click', addRandomProject);
+    </script>
 </body>
+
 </html>
