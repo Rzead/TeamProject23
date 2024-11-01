@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/chart.js@4.2.1/dist/chart.umd.js"></script>
+    <title>Statistics</title>
+    <style>
+
+        body {
+            display: flex;
+            flex-direction: column;
+            background-color: #0f172a;
+            padding: 0;
+            margin: 0;
+        }
+
+        h1 {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-size: 40px;
+            text-align: center;
+            color: #94a3b8;
+            flex-grow: 1;
+            text-align: center;
+            display: inline-block;
+        }
+        
+        h2 { 
+            color: #94a3b8; 
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        .project-container {
+            display: flex;
+            /* border: 2px solid black; */
+            flex-direction: column;
+        }
+
+        .project {
+            /* border: 2px solid green; */
+            text-align: center;
+        }
+
+        .chart-container {
+            display: flex;
+            flex-direction: row;
+           /*  border: 2px solid salmon; */
+            padding-bottom: 20px;
+            justify-content: center;
+            align-items: center;
+            
+        }
+
+        .title-container {
+            display: flex;
+            position: relative;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            
+
+        }
+
+        .back-button {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-size: 25px;
+            color: #94a3b8; 
+            margin-left: 30px;
+            position: absolute;
+        }
+
+
+        /* Panels to style projects seperately */
+        
+        .panel1 {
+            /*background-color: #1e293b;*/
+        }
+
+        .panel2 {
+           /* background-color: #475569;*/
+        }
+
+        .panel3 {
+           /*  background-color: #64748b; */
+        }
+         
+
+
+    </style>
+</head>
+<body>
+    
+    <div class="title-container">
+        <div class="back-button">Back</div>
+        <h1>Statistics</h1> 
+    </div> 
+    
+    <div class="panel1">
+    <div class="project-container">
+        <div class="project">
+
+            <h2>Project 1</h2>
+            <div class="chart-container">
+                <canvas id="chart1" width="400" height="400"></canvas>
+                <canvas id="chart2" width="400" height="400"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel2">
+        <div class="project">
+            <h2>project2</h2>
+            <div class="chart-container">
+                <canvas id="chart3" width="400" height="400"></canvas>
+                <canvas id="chart4" width="400" height="400"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel3">
+        <div class="project">
+            <h2>project3</h2>
+            <div class="chart-container">
+                <canvas id="chart5" width="400" height="400"></canvas>
+                <canvas id="chart6" width="400" height="400"></canvas>
+            </div>
+        </div>
+    </div>
+
+    </div>
+    
+    
+    <script>
+
+        // Creating charts 
+        
+        const ctx2 = document.getElementById('chart2').getContext('2d');
+
+        const chart2 = new Chart(ctx2, {
+        type: 'pie', // Pie chart type
+        data: {
+            labels: ['person1', 'person2', 'person3'], // Labels for each slice
+            datasets: [{
+                label: '',
+                data: [10, 20, 30], // Values for each slice
+                backgroundColor: [
+                '#334155',
+                '#64748b',
+                '#94a3b8'
+                ],
+                borderColor: [
+                '#475569',
+                '#94a3b8',
+                '#cbd5e1'
+                ],
+                borderWidth: 1
+            }]
+            
+            
+        },
+        options: {
+            responsive: false,
+            plugins: {
+                title: {
+                    display: true,
+                    text : 'Contribution Distribution'
+                },
+                legend: {
+                position: 'top',
+                },
+            }
+        }
+        
+    });
+
+    const c3c = document.getElementById('chart3').getContext('2d');
+    const chart3 = new Chart(c3c, {
+        type: 'doughnut', // Pie chart type
+        data: {
+            labels: ['Completed', 'Remaining',], // Labels for each slice
+            datasets: [{
+                label: '',
+                data: [70, 30], // Values for each slice
+                backgroundColor: [
+                '#334155',
+                '#64748b',
+                ],
+                borderColor: [
+                '#64748b',
+                '#94a3b8',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: false,
+            plugins: {
+                title: {
+                    display: true,
+                    text : 'Project Completion',
+                    font: {
+                        color: '#cbd5e1',
+                    },
+                },
+                    legend: {
+                    position: 'top',
+                },
+            }
+        }
+    });
+
+    const ctx1 = document.getElementById('chart1').getContext('2d');
+    const chart1 = new Chart(ctx1, {
+        type: 'doughnut', // Pie chart type
+        data: {
+            labels: ['Completed', 'Remaining',], // Labels for each slice
+            datasets: [{
+                label: '',
+                data: [70, 30], // Values for each slice
+                backgroundColor: [
+                '#334155',
+                '#64748b',
+                ],
+                borderColor: [
+                '#64748b',
+                '#94a3b8',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: false,
+            plugins: {
+                title: {
+                    display: true,
+                    text : 'Project Completion',
+                    font: {
+                        color: '#cbd5e1',
+                    },
+                },
+                    legend: {
+                    position: 'top',
+                },
+            }
+        }
+    });
+
+    const c4 = document.getElementById('chart4').getContext('2d');
+    const chart4 = new Chart(c4, {
+        type: 'pie', // Pie chart type
+        data: {
+            labels: ['Person1', 'Person2', 'Person3'], // Labels for each slice
+            datasets: [{
+                label: '',
+                data: [20,30, 30], // Values for each slice
+                backgroundColor: [
+                '#334155',
+                '#64748b',
+                ],
+                borderColor: [
+                '#64748b',
+                '#94a3b8',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: false,
+            plugins: {
+                title: {
+                    display: true,
+                    text : 'Contribution Distribution',
+                    font: {
+                        color: '#cbd5e1',
+                    },
+                },
+                    legend: {
+                    position: 'top',
+                },
+            }
+        }
+    });
+
+    const c5 = document.getElementById('chart5').getContext('2d');
+    const chart5 = new Chart(c5, {
+        type: 'doughnut', // Pie chart type
+        data: {
+            labels: ['Completed', 'Remaining',], // Labels for each slice
+            datasets: [{
+                label: '',
+                data: [70, 30], // Values for each slice
+                backgroundColor: [
+                '#334155',
+                '#64748b',
+                ],
+                borderColor: [
+                '#64748b',
+                '#94a3b8',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: false,
+            plugins: {
+                title: {
+                    display: true,
+                    text : 'Project Completion',
+                    font: {
+                        color: '#cbd5e1',
+                    },
+                },
+                    legend: {
+                    position: 'top',
+                },
+            }
+        }
+    });
+
+    const c6 = document.getElementById('chart6').getContext('2d');
+    const chart6 = new Chart(c6, {
+        type: 'pie', // Pie chart type
+        data: {
+            labels: ['Person1', 'Person2', 'Person3'], // Labels for each slice
+            datasets: [{
+                label: '',
+                data: [20, 20, 30, 30], // Values for each slice
+                backgroundColor: [
+                '#334155',
+                '#64748b',
+                ],
+                borderColor: [
+                '#64748b',
+                '#94a3b8',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: false,
+            plugins: {
+                title: {
+                    display: true,
+                    text : 'Contribution Distribution',
+                    font: {
+                        color: '#cbd5e1',
+                    },
+                },
+                    legend: {
+                    position: 'top',
+                },
+            }
+        }
+    });
+
+    </script>
+
+    
+</body>
+</html>
