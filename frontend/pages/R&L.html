@@ -230,11 +230,10 @@
         </div>
         <h2 class="register_and_login_from_title title">Register</h2>
         <span class="form_span">Welcome to join our company, now please type your</span>
-        <input type="text" class="form_input" placeholder="Name">
-        <!--We need js to verify here if it is a legal email in the formal version-->
-        <input type="text" class="form_input" placeholder="Email" id="register_Email">
-        <input type="text" class="form_input" placeholder="Password">
-        <button class="form_submit_button button">Register</button>
+        <input type="text" class="form_input" placeholder="Name" required>
+        <input type="text" class="form_input" placeholder="Email" id="register_Email" required>
+        <input type="password" class="form_input" placeholder="Password" id="register_Password" required>
+        <button type="submit" class="form_submit_button button">Register</button>
       </form>
     </div>
 
@@ -248,7 +247,6 @@
         <input type="text" class="form_input" placeholder="Email" id="login_Email" required>
         <input type="password" class="form_input" placeholder="Password" id="login_Password" required>
         <button type="submit" class="form_submit_button button">Login</button>
-        <!-- Password reset link -->
         <a href="#" class="forget_password_link">Forgot your password?</a>
       </form>
     </div>
@@ -263,12 +261,11 @@
         const email = document.getElementById('login_Email').value;
         const password = document.getElementById('login_Password').value;
 
-        // Debug logs
         console.log("Entered email:", email);
         console.log("Entered password:", password);
 
-        // Regular expression correction
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        const passwordRegex = /^(?=.*[0-9])(?=.*[A-Z])(?=.*[!@#$%^&*])/;
 
         if (!email || !password) {
           alert('Both fields are required.');
@@ -276,14 +273,12 @@
           return;
         }
 
-        // Specific validation for make-it-all company email format
         if (!emailRegex.test(email) || !email.endsWith('@make-it-all.co.uk')) {
           alert('Invalid email format. It should be firstname.lastname@make-it-all.co.uk');
           console.log("Invalid email format.");
           return;
         }
 
-        // Password validation
         if (password === 'admin') {
           console.log("Correct password. Redirecting...");
           window.location.href = 'projects.html';
@@ -292,8 +287,61 @@
           console.log("Incorrect password.");
         }
 
+        if (!passwordRegex.test(password)) {
+          alert('Password must contain at least one number, one uppercase letter, and one special character.');
+          console.log("Password does not meet complexity requirements.");
+          return;
+        }
+        else {
+          console.log("Correct password. Redirecting...");
+          window.location.href = 'projects.html';
+        }
+
+
       });
     </script>
+
+    <script>
+      const registerForm = document.getElementById('register_form');
+
+      registerForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        console.log("test");
+        
+        const email = document.getElementById('register_Email').value;
+        const password = document.getElementById('register_Password').value;
+
+        console.log("Entered email:", email);
+        console.log("Entered password:", password);
+
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        const passwordRegex = /^(?=.*[0-9])(?=.*[A-Z])(?=.*[!@#$%^&*])/;
+
+        if (!email || !password) {
+          alert('Both fields are required.');
+          console.log("One of the fields is empty.");
+          return;
+        }
+
+        if (!emailRegex.test(email) || !email.endsWith('@make-it-all.co.uk')) {
+          alert('Invalid email format. It should be firstname.lastname@make-it-all.co.uk');
+          console.log("Invalid email format.");
+          return;
+        }
+
+        if (!passwordRegex.test(password)) {
+          alert('Password must contain at least one number, one uppercase letter, and one special character.');
+          console.log("Password does not meet complexity requirements.");
+          return;
+        }
+
+        alert('Registration successful!');
+        console.log("Correct password. Redirecting...");
+        window.location.href = 'projects.html';
+        console.log("User registered successfully.");
+      });
+    </script>
+
 
 
     <div class="switch_login_and_register" id="switch_obj">
@@ -354,7 +402,7 @@
 
   let shell = (e) => {
     for (let i = 0; i < submit_buttons.length; i++)
-      //submit_buttons[i].addEventListener("click", getButtons); // Pierre: Don't understant the purpose of this line 
+      //submit_buttons[i].addEventListener("click", getButtons); // Pierre: Don't understand the purpose of this line 
       for (let i = 0; i < switch_btns.length; i++)
         switch_btns[i].addEventListener("click", changeForm);
   };
