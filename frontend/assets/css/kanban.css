@@ -1,0 +1,44 @@
+body {
+  font-family: 'Lato';
+  margin: 0;
+  padding: 0;
+}
+
+#myKanban {
+  overflow-x: auto;
+  padding: 20px;
+  padding-left: 0;
+}
+
+/* Custom colors for the boards */
+.todo {
+  background: #006400;
+  /* Dark green */
+}
+
+.inprogress {
+  background: #ffa500;
+  /* Orange */
+}
+
+.totest {
+  background: #ff1493;
+  /* Deep pink */
+}
+
+.done {
+  background: #800080;
+  /* Purple */
+}
+
+.custom-button {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 7px 15px;
+  margin: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}

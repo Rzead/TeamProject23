@@ -1,0 +1,60 @@
+.page-container {
+  display: flex;
+  height: 100vh;
+}
+
+#navbar-container {
+  width: 250px;
+  background-color: bisque;
+}
+
+.shell {
+  flex: 1;
+  padding: 20px;
+  background-color: bisque;
+  box-shadow: -2px 0
+    5px
+    rgba(
+      0,
+      0,
+      0,
+      0.1
+    );
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.resource-panel {
+  margin-top: 10px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.resourceForm {
+  background-color: bisque;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  align-items: center;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0px
+    2px 5px
+    rgba(
+      0,
+      0,
+      0,
+      0.1
+    );
+}
+
+.tableContainer {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.panel-group {
+  margin-top: 30px;
+}
