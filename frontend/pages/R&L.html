@@ -9,11 +9,10 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" href="../assets/css/R&L.css">
 </head>
+
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const action = sessionStorage.getItem('authAction');
-
-    // Sélection des éléments nécessaires
     const switch_SLAR = document.querySelector("#switch_obj");
     const switch_a = document.querySelector("#switch_a");
     const switch_b = document.querySelector("#switch_b");
@@ -21,7 +20,6 @@
     const b_con = document.querySelector("#login");
 
     if (action === 'login') {
-      // Basculer vers le formulaire de connexion
       switch_SLAR.classList.add("is-objr");
       switch_a.classList.add("is-hidden");
       switch_b.classList.remove("is-hidden");
@@ -29,7 +27,6 @@
       b_con.classList.add("is-objl");
       b_con.classList.add("is-objz");
     } else if (action === 'register') {
-      // Basculer vers le formulaire d'inscription
       switch_SLAR.classList.remove("is-objr");
       switch_a.classList.remove("is-hidden");
       switch_b.classList.add("is-hidden");
@@ -38,7 +35,6 @@
       b_con.classList.remove("is-objz");
     }
 
-    // Nettoyer le sessionStorage
     sessionStorage.removeItem('authAction');
   });
 </script>
