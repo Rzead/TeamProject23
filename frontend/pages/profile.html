@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../assets/css/global.css">
     <link rel="stylesheet" href="../assets/css/profile.css">
     <script src="../../includes/navbar.js"></script>
-    <title>Profil</title>
+    <title>Profile</title>
 </head>
 
 <body>
@@ -26,7 +26,7 @@
             </div>
 
             <div id="form">
-                <form action="update_profile.php" method="POST">
+                <form id="profile-form" action="profile.html" method="POST"> <!-- For the moment, the action do nothing because we don't have any DataBase -->
                     <div class="form-title">
                         <h3>Update Your Information</h3>
                     </div>
@@ -46,35 +46,87 @@
                         <input type="email" id="email" name="email" value="default@make-it-all.co.uk" required>
                     </div>
 
-                    <div class="form-title">
-                        <h3>Change Password</h3>
+                    <div class="form-group">
+                        <label for="change-password-checkbox">
+                            <input type="checkbox" id="change-password-checkbox">
+                            Check to change your password
+                        </label>
                     </div>
 
-                    <div class="form-group">
-                        <label for="old-password">Old Password:</label>
-                        <input type="password" id="old-password" name="old_password" required>
-                    </div>
+                    <div id="password-section" style="display: none;">
+                        <div class="form-title">
+                            <h3>Change Password</h3>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="new-password">New Password:</label>
-                        <input type="password" id="new-password" name="new_password" required>
-                    </div>
+                        <div class="form-group">
+                            <label for="old-password">Old Password:</label>
+                            <input type="password" id="old-password" name="old_password">
+                        </div>
 
-                    <div class="form-group">
-                        <label for="confirm-password">Confirm New Password:</label>
-                        <input type="password" id="confirm-password" name="confirm_password" required>
+                        <div class="form-group">
+                            <label for="new-password">New Password:</label>
+                            <input type="password" id="new-password" name="new_password">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirm-password">Confirm New Password:</label>
+                            <input type="password" id="confirm-password" name="confirm_password">
+                        </div>
                     </div>
 
                     <div class="button-container">
-                        <button type="submit">Submit</button>
-                        <button type="button">Cancel</button>
+                        <button type="submit" id="submit-button">Submit</button>
+                        <button type="button" id="cancel-button">Cancel</button>
                     </div>
-                    
                 </form>
             </div>
         </div>
     </div>
 
+    <script>
+        document.getElementById('change-password-checkbox').addEventListener('change', function () {
+            var passwordSection = document.getElementById('password-section');
+            if (this.checked) {
+                passwordSection.style.display = 'block';
+            } else {
+                passwordSection.style.display = 'none';
+            }
+        });
+
+        document.getElementById('profile-form').addEventListener('submit', function (event) {
+            var passwordSection = document.getElementById('password-section');
+            var oldPassword = document.getElementById('old-password').value;
+            var newPassword = document.getElementById('new-password').value;
+            var confirmPassword = document.getElementById('confirm-password').value;
+
+            if (passwordSection.style.display !== 'none') {
+                // Here we verify if the confirmation and the new password match 
+                if (!oldPassword || newPassword !== confirmPassword || !newPassword || !confirmPassword) {
+                    event.preventDefault();
+                    alert("Please fill in the password fields correctly.");
+                    return;
+                }
+            }
+            
+            // submit the form 
+            console.log("Form submitted without page refresh");
+        });
+
+        document.getElementById('cancel-button').addEventListener('click', function () {
+            // reset form fields to their default values
+            document.getElementById('profile-form').reset();
+            
+            // hide the password section if it was visible
+            var passwordSection = document.getElementById('password-section');
+            passwordSection.style.display = 'none';
+
+            // uncheck the checkbox for changing the password
+            var changePasswordCheckbox = document.getElementById('change-password-checkbox');
+            changePasswordCheckbox.checked = false;
+        });
+
+    </script>
 </body>
 
 </html>
+
