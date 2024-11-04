@@ -1,4 +1,4 @@
-<!-- https://github.com/riktar/jkanban -->
+<!-- Ressource : https://github.com/riktar/jkanban -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,54 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../includes/dist/jkanban.css" />
     <link rel="stylesheet" href="../assets/css/global.css">
-    <link rel="stylesheet" href="../assets/css/project.css">
+    <link rel="stylesheet" href="../assets/css/kanban.css">
+    <script src="../../includes/navbar.js"></script>
+    <script src="../../includes/dist/jkanban.js"></script>
     <title>Kanban</title>
-    <style>
-        body {
-            font-family: "Lato";
-            margin: 0;
-            padding: 0;
-        }
-
-        #myKanban {
-            overflow-x: auto;
-            padding: 20px;
-            padding-left: 0;
-        }
-
-        /* Custom colors for the boards */
-        .todo {
-            background: #006400;
-            /* Dark green */
-        }
-
-        .inprogress {
-            background: #FFA500;
-            /* Orange */
-        }
-
-        .totest {
-            background: #FF1493;
-            /* Deep pink */
-        }
-
-        .done {
-            background: #800080;
-            /* Purple */
-        }
-
-        .custom-button {
-            background-color: #4CAF50;
-            border: none;
-            color: white;
-            padding: 7px 15px;
-            margin: 10px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-        }
-    </style>
 </head>
 
 <body>
@@ -65,9 +21,9 @@
                 <h1 style="margin: 0;margin-left: 10px;">Kanban List</h1>
             </div>
             <div id="myKanban"></div>
-            <script src="../../includes/dist/jkanban.js"></script>
+
             <script>
-                var KanbanTest = new jKanban({
+                var Kanban = new jKanban({
                     element: "#myKanban",
                     gutter: "10px",
                     widthBoard: "250px",
@@ -92,13 +48,13 @@
                         formItem.innerHTML =
                             '<div class="form-group"><textarea class="form-control" rows="2" autofocus></textarea></div><div class="form-group"><button type="submit" class="btn btn-primary btn-xs pull-right">Submit</button><button type="button" id="CancelBtn" class="btn btn-default btn-xs pull-right">Cancel</button></div>';
 
-                        KanbanTest.addForm(boardId, formItem);
+                        Kanban.addForm(boardId, formItem);
                         formItem.addEventListener("submit", function (e) {
                             e.preventDefault();
 
                             var text = e.target[0].value;
                             if (text.length != 0) {
-                                KanbanTest.addElement(boardId, {
+                                Kanban.addElement(boardId, {
                                     title: text
                                 });
                                 formItem.parentNode.removeChild(formItem);
@@ -166,15 +122,15 @@
                 // <br />
                 // <button id="removeElement">Remove "My Task Test"</button>
                 // document.getElementById("addToDo").addEventListener("click", function () {
-                //   KanbanTest.addElement("_todo", { title: "New To-Do Task" });
+                //   Kanban.addElement("_todo", { title: "New To-Do Task" });
                 // });
 
                 // document.getElementById("addToDoAtPosition").addEventListener("click", function () {
-                //   KanbanTest.addElement("_todo", { title: "Task at Pos 2" }, 1);
+                //   Kanban.addElement("_todo", { title: "Task at Pos 2" }, 1);
                 // });
 
                 // document.getElementById("addDefault").addEventListener("click", function () {
-                //   KanbanTest.addBoards([
+                //   Kanban.addBoards([
                 //     {
                 //       id: "_default",
                 //       title: "Kanban Default",
@@ -187,17 +143,15 @@
                 // });
 
                 // document.getElementById("removeBoard").addEventListener("click", function () {
-                //   KanbanTest.removeBoard("_done");
+                //   Kanban.removeBoard("_done");
                 // });
 
                 // document.getElementById("removeElement").addEventListener("click", function () {
-                //   KanbanTest.removeElement("_test_delete");
+                //   Kanban.removeElement("_test_delete");
                 // });
             </script>
         </div>
     </div>
-
-    <script src="../../includes/navbar.js"></script>
 </body>
 
 </html>

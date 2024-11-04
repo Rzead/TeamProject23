@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/global.css">
-    <title>Profil</title>
+    <link rel="stylesheet" href="../assets/css/profile.css">
+    <script src="../../includes/navbar.js"></script>
+    <title>Profile</title>
 </head>
 
 <body>
@@ -24,15 +26,14 @@
             </div>
 
             <div id="form">
-                <form action="update_profile.php" method="POST">
-                    <!-- Personal Information -->
+                <form id="profile-form" action="profile.html" method="POST"> <!-- For the moment, the action do nothing because we don't have any DataBase -->
                     <div class="form-title">
                         <h3>Update Your Information</h3>
                     </div>
 
                     <div class="form-group">
                         <label for="first-name">First Name:</label>
-                        <input type="text" id="first-name" name="first_name" value="firstname" required> <!-- TODO: change the default value by Personal details -->
+                        <input type="text" id="first-name" name="first_name" value="firstname" required>
                     </div>
 
                     <div class="form-group">
@@ -45,174 +46,87 @@
                         <input type="email" id="email" name="email" value="default@make-it-all.co.uk" required>
                     </div>
 
-                    <!-- Password Change -->
-                    <div class="form-title">
-                        <h3>Change Password</h3>
+                    <div class="form-group">
+                        <label for="change-password-checkbox">
+                            <input type="checkbox" id="change-password-checkbox">
+                            Check to change your password
+                        </label>
                     </div>
 
-                    <div class="form-group">
-                        <label for="old-password">Old Password:</label>
-                        <input type="password" id="old-password" name="old_password" required>
-                    </div>
+                    <div id="password-section" style="display: none;">
+                        <div class="form-title">
+                            <h3>Change Password</h3>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="new-password">New Password:</label>
-                        <input type="password" id="new-password" name="new_password" required>
-                    </div>
+                        <div class="form-group">
+                            <label for="old-password">Old Password:</label>
+                            <input type="password" id="old-password" name="old_password">
+                        </div>
 
-                    <div class="form-group">
-                        <label for="confirm-password">Confirm New Password:</label>
-                        <input type="password" id="confirm-password" name="confirm_password" required>
+                        <div class="form-group">
+                            <label for="new-password">New Password:</label>
+                            <input type="password" id="new-password" name="new_password">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirm-password">Confirm New Password:</label>
+                            <input type="password" id="confirm-password" name="confirm_password">
+                        </div>
                     </div>
 
                     <div class="button-container">
-                        <button type="submit">Submit</button>
-                        <button type="button">Cancel</button>
+                        <button type="submit" id="submit-button">Submit</button>
+                        <button type="button" id="cancel-button">Cancel</button>
                     </div>
-                    
                 </form>
             </div>
         </div>
     </div>
 
-    <script src="../../includes/navbar.js"></script>
+    <script>
+        document.getElementById('change-password-checkbox').addEventListener('change', function () {
+            var passwordSection = document.getElementById('password-section');
+            if (this.checked) {
+                passwordSection.style.display = 'block';
+            } else {
+                passwordSection.style.display = 'none';
+            }
+        });
 
-    <style>
-        /* Profile Picture Styling */
-        #profil {
-            margin-top: 5%;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            width: 100%;
-        }
+        document.getElementById('profile-form').addEventListener('submit', function (event) {
+            var passwordSection = document.getElementById('password-section');
+            var oldPassword = document.getElementById('old-password').value;
+            var newPassword = document.getElementById('new-password').value;
+            var confirmPassword = document.getElementById('confirm-password').value;
 
-        .profile-picture-container {
-            position: relative;
-            width: 20%;
-            max-width: 200px;
-            aspect-ratio: 1 / 1;
-            cursor: pointer;
-        }
-
-        #profil-picture {
-            width: 100%;
-            height: auto;
-            border-radius: 50%;
-            object-fit: cover;
-            transition: box-shadow 0.3s ease;
-        }
-
-        .profile-picture-container:hover #profil-picture {
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .edit-icon {
-            position: absolute;
-            bottom: 5%;
-            right: 5%;
-            width: 22%;
-            height: 22%;
-            border-radius: 50%;
-            background-color: white;
-            padding: 2px;
-            object-fit: cover;
-        }
-
-        /* Form Styling */
-        #profil-title {
-            flex: 1;
-            text-align: center;
-            font-size: 2.5em; 
-        }
-
-        #form {
-            display: flex;
-            flex-direction: column;
-            align-items: start;
-            width: 90%;
+            if (passwordSection.style.display !== 'none') {
+                // Here we verify if the confirmation and the new password match 
+                if (!oldPassword || newPassword !== confirmPassword || !newPassword || !confirmPassword) {
+                    event.preventDefault();
+                    alert("Please fill in the password fields correctly.");
+                    return;
+                }
+            }
             
-            margin-left: auto;
-            margin-right: auto;
-            padding: 2%;
-        }
+            // submit the form 
+            console.log("Form submitted without page refresh");
+        });
 
-        .form-title {
-            display: flex;
-            margin-bottom: 1em;
-            font-weight: bold;
-        }
+        document.getElementById('cancel-button').addEventListener('click', function () {
+            // reset form fields to their default values
+            document.getElementById('profile-form').reset();
+            
+            // hide the password section if it was visible
+            var passwordSection = document.getElementById('password-section');
+            passwordSection.style.display = 'none';
 
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 1em;
-            width: 100%;
-        }
+            // uncheck the checkbox for changing the password
+            var changePasswordCheckbox = document.getElementById('change-password-checkbox');
+            changePasswordCheckbox.checked = false;
+        });
 
-        .form-group label {
-            font-size: 0.9em;
-            color: #333;
-            margin-bottom: 0.3em;
-        }
-
-        .form-group input[type="text"],
-        .form-group input[type="email"],
-        .form-group input[type="password"] {
-            width: 100%;
-            padding: 0.8em;
-            border: none;
-            border-radius: 8px;
-            background-color: #f5f5f5;
-            box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s ease;
-        }
-
-        .form-group input:focus {
-            background-color: #e9e9e9;
-            outline: none;
-            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-        }
-
-        button[type="submit"],
-        button[type="button"] {
-            padding: 0.8em 1.5em;
-            margin-top: 1em;
-            border: none;
-            border-radius: 5px;
-            background-color: #007BFF;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            width: 100%;
-            max-width: 200px;
-        }
-
-        button[type="submit"]:hover,
-        button[type="button"]:hover {
-            background-color: #0056b3;
-        }
-
-        #content {
-            background-color: aliceblue;
-            padding: 20px;
-        }
-
-        .button-container {
-            display: flex;
-            justify-content: flex-start;
-            width: 100%;
-        }
-    
-        .button-container button {
-            margin-right: 10px;
-        }
-    
-        .button-container button:last-child {
-            margin-right: 0;
-        }
-
-    </style>
+    </script>
 </body>
 
 </html>
+
