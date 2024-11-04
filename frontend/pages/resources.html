@@ -5,71 +5,26 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src="../../includes/navbar.js"></script>
-  <style>
-
-    .page-container {
-      display: flex; 
-      height: 100vh; 
-    }
-
-    #navbar-container {
-      width: 250px; 
-      background-color: bisque;
-    }
-
-    .shell {
-      flex: 1; 
-      padding: 20px; 
-      background-color: bisque;
-      box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); 
-      display: flex; 
-      flex-direction: column; 
-      align-items: center; 
-
-    }
-
-    .resource-panel {
-      margin-top: 10px; 
-      width: 100%; 
-      max-width: 600px; 
-    }
-    
-    .resourceForm {
-        background-color: bisque; 
-        margin-bottom: 30px;
-        display: flex; 
-        flex-direction: row;
-        gap: 15px;
-        align-items: center;
-        padding: 10px;
-        border-radius: 5px;
-        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    .tableContainer {
-    margin-top: 20px;
-    width: 100%;
-    }
-
-    .panel-group {
-        margin-top: 30px; 
-    }
-  </style>
+  <link rel="stylesheet" href="../assets/css/ressources.css">
+  <link rel="stylesheet" href="../assets/css/global.css">
 </head>
+<style>
+
+
+
+</style>
 <body>
    
-    <div class="page-container">
-        
-        <div id="navbar-container"></div>
-        
-        <div class="shell">
+  <div class="page-container">
+    <div id="navbar-container"></div>
+    <div id="page-content">
                 
                 <div class="resourceForm"> 
                     <h2>Resource Management</h2>
 
-                    <!-- Resource Input Form -->
                     <div class="form-group">
                         <label for="resourceType">Add group:</label>
                         <input type="text" class="form-control" id="resourceType" placeholder="group name">
@@ -78,14 +33,13 @@
                         <label for="resourceContent">Resource allocate:</label>
                         <input type="text" class="form-control" id="resourceContent" placeholder="allocate resource">
                     </div>
-                    <button type="button" class="btn btn-success" onclick="addResource()">confirm</button>
+                    <button type="button" class="btn btn-success" onclick="addResource()">Confirm</button>
                 </div>
                 
                 <div class="tableContainer">
-                <table class="table table-hover">
-
+                  <h2 style="text-align: center; color: #2c3e50;">Resource Overview</h2>
+                  <table class="table table-hover">
                     <tbody>
-                      <h2 style="text-align: center;" >Resource Overview</h2>
                       <tr>
                         <td>Current employees</td>
                         <td>32</td>
@@ -93,69 +47,57 @@
                       </tr>
                       <tr>
                         <td>Physical Resource</td>
-                        <td>24 computers, 50 tables, 5 printers, 3 water dispenser</td>
+                        <td>24 computers 50 tables 5 printers 3 water dispensers</td>
                         <td></td>
                       </tr>
                       <tr>
                         <td>Intellectual Property</td>
-                        <td>Patent Rights: 10, Trademark Rights: 10, Copyright: 20</td>
+                        <td>Patent Rights: 10 Trademark Rights: 10 Copyright: 20</td>
                         <td></td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
 
-
-            
-            <div class="panel-group" id="resourcePanels">
-                <div class="panel panel-danger resource-panel">
-                    <div class="panel-heading">Group 1</div>
-                    <div class="panel-body">
-                        <a href="#" style="color: black;">Alice</a>, 
-                        <a href="#" style="color: black;">Martin</a>, 
-                        <a href="#" style="color: black;">Billy</a>
-                        case1， Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        <button class="btn btn-danger btn-xs pull-right" onclick="removeResource(this)">Delete</button>
+                <div class="panel-group" id="resourcePanels">
+                    <div class="panel panel-danger resource-panel">
+                        <div class="panel-heading">Group 1</div>
+                        <div class="panel-body">
+                            <a href="#" style="color: black;">Alice</a>, 
+                            <a href="#" style="color: black;">Martin</a>, 
+                            <a href="#" style="color: black;">Billy</a>
+                            - Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            <button class="btn btn-danger btn-xs pull-right" onclick="removeResource(this)">Delete</button>
+                        </div>
                     </div>
                 </div>
         </div>
     </div>
 
 <script>
-let colorIndex = 0; // To track the current color index
-const colors = ['info', 'success', 'warning', 'danger', 'primary']; // Color array
+let colorIndex = 0;
+const colors = ['info', 'success', 'warning', 'danger', 'primary'];
 
 function addResource() {
-    // Get the resource type and content from the input fields
     var resourceType = document.getElementById('resourceType').value;
     var resourceContent = document.getElementById('resourceContent').value;
 
-    // Validate input
     if (resourceType.trim() === '' || resourceContent.trim() === '') {
         alert("Please enter both resource type and content.");
         return;
     }
 
-    // Create a new panel for the new resource
     var newPanel = document.createElement('div');
-    newPanel.className = 'panel panel-' + colors[colorIndex] + ' resource-panel'; // Use current color
-    
+    newPanel.className = 'panel panel-' + colors[colorIndex] + ' resource-panel';
+
     var panelHeading = document.createElement('div');
     panelHeading.className = 'panel-heading';
+    panelHeading.innerText = resourceType;
 
-    // Create an anchor element for the resource type
-    var resourceLink = document.createElement('a');
-    resourceLink.href = '#';
-    resourceLink.style.color = 'white'; // Ensure the link text is visible
-    resourceLink.innerText = resourceType;
-
-    panelHeading.appendChild(resourceLink);
-    
     var panelBody = document.createElement('div');
     panelBody.className = 'panel-body';
     panelBody.innerText = resourceContent;
 
-    // Create a delete button
     var deleteButton = document.createElement('button');
     deleteButton.className = 'btn btn-danger btn-xs pull-right';
     deleteButton.innerText = 'Delete';
@@ -163,24 +105,17 @@ function addResource() {
         removeResource(deleteButton);
     };
 
-    // Append heading, body, and delete button to the new panel
     panelBody.appendChild(deleteButton);
     newPanel.appendChild(panelHeading);
     newPanel.appendChild(panelBody);
-
-    // Append the new panel to the resource panels container
     document.getElementById('resourcePanels').appendChild(newPanel);
 
-    // Clear input fields
     document.getElementById('resourceType').value = '';
     document.getElementById('resourceContent').value = '';
-
-    // Update color index for next resource
-    colorIndex = (colorIndex + 1) % colors.length; // Loop back to start
+    colorIndex = (colorIndex + 1) % colors.length;
 }
 
 function removeResource(button) {
-    // Remove the panel that contains the clicked delete button
     var panel = button.parentNode.parentNode;
     panel.parentNode.removeChild(panel);
 }
