@@ -1,11 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Main Page </title>
+    <title>Make it All</title>
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
 </head>
+<script>
+    function redirectToAuth(action) {
+        sessionStorage.setItem('authAction', action);
+        window.location.href = 'R&L.html';
+    }
+</script>
+
 <body>
-<p>CONNNNNNECTED</p>
+    <header class="header">
+        <h1>Make it All</h1>
+        <div class="auth-buttons">
+            <button onclick="redirectToAuth('login')">Login</button>
+            <button onclick="redirectToAuth('register')">Register</button>
+
+        </div>
+    </header>
+
+    <main class="content">
+        <section class="section">
+            <div class="text">
+                <h2>Welcome to Make-It-All</h2>
+                <p>Empowering Productivity and Knowledge Management for Success</p>
+                <p>At Make-It-All, we are committed to creating a seamless work environment where productivity and knowledge-sharing are prioritized. Our mission is to provide our team members with the right tools to excel in their daily tasks and to foster a collaborative environment that allows knowledge to flow freely across the company.</p>
+            </div>
+            <img src="../../ressources/images/image1.jpeg" alt="Teamwork illustration">
+        </section>
+
+        <section class="section">
+            <img src="../../ressources/images/image2.jpeg" alt="Productivity illustration">
+            <div class="text">
+                <h2>Productivity Management System</h2>
+                <p>To streamline task management and improve project tracking, our productivity management system offers a robust to-do list feature. Employees can organize daily tasks, track their progress, and collaborate effectively with their teams. With our dedicated manager dashboard, team leads can monitor project milestones, distribute tasks evenly, and gain insights into workload distribution to maintain efficiency across the board.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="text">
+                <h2>Knowledge Management System</h2>
+                <p>Our knowledge management system is designed to ensure that valuable information is easily accessible to everyone. From technical solutions to administrative processes, employees can create, organize, and share topics and posts tailored to the needs of our organization. Topics like "Software Development," "Technical Issues," and "Administrative Processes" make it simple for employees to find the information they need when they need it.</p>
+            </div>
+            <img src="../../ressources/images/image3.jpeg" alt="Knowledge sharing illustration">
+        </section>
+    </main>
 </body>
+
 </html>

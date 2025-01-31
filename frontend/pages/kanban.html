@@ -1,0 +1,157 @@
+<!-- Ressource : https://github.com/riktar/jkanban -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../includes/dist/jkanban.css" />
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/kanban.css">
+    <script src="../../includes/navbar.js"></script>
+    <script src="../../includes/dist/jkanban.js"></script>
+    <title>Kanban</title>
+</head>
+
+<body>
+    <div class="page-container">
+        <div id="navbar-container"></div>
+        <div id="content" style="padding: 20px;">
+            <div id="kanban-title">
+                <h1 style="margin: 0;margin-left: 10px;">Kanban List</h1>
+            </div>
+            <div id="myKanban"></div>
+
+            <script>
+                var Kanban = new jKanban({
+                    element: "#myKanban",
+                    gutter: "10px",
+                    widthBoard: "250px",
+                    itemHandleOptions: {
+                        enabled: true,
+                    },
+                    click: function (el) {
+                        console.log("Trigger on all items click!");
+                    },
+                    context: function (el, e) {
+                        console.log("Trigger on all items right-click!");
+                    },
+                    dropEl: function (el, target, source, sibling) {
+                        console.log(target.parentElement.getAttribute('data-id'));
+                        console.log(el, target, source, sibling)
+                    },
+                    buttonClick: function (el, boardId) {
+                        console.log(el);
+                        console.log(boardId);
+                        var formItem = document.createElement("form");
+                        formItem.setAttribute("class", "itemform");
+                        formItem.innerHTML =
+                            '<div class="form-group"><textarea class="form-control" rows="2" autofocus></textarea></div><div class="form-group"><button type="submit" class="btn btn-primary btn-xs pull-right">Submit</button><button type="button" id="CancelBtn" class="btn btn-default btn-xs pull-right">Cancel</button></div>';
+
+                        Kanban.addForm(boardId, formItem);
+                        formItem.addEventListener("submit", function (e) {
+                            e.preventDefault();
+
+                            var text = e.target[0].value;
+                            if (text.length != 0) {
+                                Kanban.addElement(boardId, {
+                                    title: text
+                                });
+                                formItem.parentNode.removeChild(formItem);
+                            }
+
+                        });
+                        document.getElementById("CancelBtn").onclick = function () {
+                            formItem.parentNode.removeChild(formItem);
+                        };
+                    },
+                    itemAddOptions: {
+                        enabled: true,
+                        content: '+ Add New Card',
+                        class: 'custom-button',
+                        footer: true
+                    },
+                    boards: [
+                        {
+                            id: "_todo",
+                            title: "Todo",
+                            class: "todo",
+                            dragTo: ["_todo", "_inprogress", "_totest", "_done"],
+                            item: [
+                                { title: "Sample To-Do Task" }
+                            ]
+                        },
+                        {
+                            id: "_inprogress",
+                            title: "In Progress",
+                            class: "inprogress",
+                            dragTo: ["_todo", "_inprogress", "_totest", "_done"],
+                            item: [
+                                { title: "Ongoing Task" }
+                            ]
+                        },
+                        {
+                            id: "_totest",
+                            title: "To Test",
+                            class: "totest",
+                            dragTo: ["_todo", "_inprogress", "_totest", "_done"],
+                            item: [
+                                { title: "Test Task" }
+                            ]
+                        },
+                        {
+                            id: "_done",
+                            title: "Done",
+                            class: "done",
+                            dragTo: ["_todo", "_inprogress", "_totest", "_done"],
+                            item: [
+                                { title: "Completed Task" }
+                            ]
+                        }
+                    ]
+                });
+
+                // TODO Plug to to better buttons 
+                //     <button id="addDefault">Add "Default" board</button>
+                // <br />
+                // <button id="addToDo">Add element in "To Do" Board</button>
+                // <br />
+                // <button id="addToDoAtPosition">Add element in "To Do" Board at position 2</button>
+                // <br />
+                // <button id="removeBoard">Remove "Done" Board</button>
+                // <br />
+                // <button id="removeElement">Remove "My Task Test"</button>
+                // document.getElementById("addToDo").addEventListener("click", function () {
+                //   Kanban.addElement("_todo", { title: "New To-Do Task" });
+                // });
+
+                // document.getElementById("addToDoAtPosition").addEventListener("click", function () {
+                //   Kanban.addElement("_todo", { title: "Task at Pos 2" }, 1);
+                // });
+
+                // document.getElementById("addDefault").addEventListener("click", function () {
+                //   Kanban.addBoards([
+                //     {
+                //       id: "_default",
+                //       title: "Kanban Default",
+                //       item: [
+                //         { title: "Default Item 1" },
+                //         { title: "Default Item 2" }
+                //       ]
+                //     }
+                //   ]);
+                // });
+
+                // document.getElementById("removeBoard").addEventListener("click", function () {
+                //   Kanban.removeBoard("_done");
+                // });
+
+                // document.getElementById("removeElement").addEventListener("click", function () {
+                //   Kanban.removeElement("_test_delete");
+                // });
+            </script>
+        </div>
+    </div>
+</body>
+
+</html>
